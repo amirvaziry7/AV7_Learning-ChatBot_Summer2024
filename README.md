@@ -1,19 +1,4 @@
-# This is a MarkDown File
+# Hello everyone
 
-**This is Text Must Bold** 
-This is Normal Text
-*This is Italic Text*
-- Item1
-- Item2
+## This repository is about learning how to create a chatbot and survey app using Streamlit.
 
-1. Item 1
-2. Item 2
-
-`Print('Hello World')`
-
-```Print('Hello World')```
-
-[Google](https:\\google.com)
-
->Hello
----
