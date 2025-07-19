@@ -8,18 +8,19 @@ import requests
 load_dotenv()
 
 #Version 01 Withot Memory
-chat=OpenAI(
+client=OpenAI(
     api_key=os.getenv("API_KEY"),
-    base_url=os.getenv("BASE_URL")
+    #base_url=os.getenv("BASE_URL")
 )
 
 # while True:
 #     user_prompt=input("Please Write Your Question :")
-#     response= chat.completions.create(
-#         model="gpt-4o",
-#         prompt=user_prompt
+#     response= client.chat.completions.create(
+#         model="gpt-4",
+#         messages=[{"role":"user","content":user_prompt}]
 #     )
-#     print(response.choices[0].text)
+#     #print(response)
+#     print(response.choices[0].message.content)
 
 
 #version 02 WithMemory
@@ -33,7 +34,7 @@ chat=OpenAI(
 #     messages.append(
 #         {"role":"user","content":user_prompt}
 #     )
-#     response=chat.chat.completions.create(
+#     response=client.chat.completions.create(
 #         model="gpt-4",
 #         messages=messages
 #     )
@@ -41,6 +42,7 @@ chat=OpenAI(
 #     messages.append(
 #         {"role":"assistant","content":response.choices[0].message.content}
 #     )
+
 
 
 #version 03 WithMemory and Change Temp
@@ -54,10 +56,10 @@ chat=OpenAI(
 #     messages.append(
 #         {"role":"user","content":user_prompt}
 #     )
-#     response=chat.chat.completions.create(
+#     response=client.chat.completions.create(
 #         model="gpt-4",
 #         messages=messages,
-#         temperature=0.5
+#         temperature=1
 #     )
 #     print(response.choices[0].message.content)
 #     messages.append(
@@ -82,19 +84,19 @@ chat=OpenAI(
 
 #version 04 Generate Image With DAL-e
 
-while True:
-    user_prompt=input("Please Enter Your Prompt:")
-    response= chat.images.generate(
-        model="dall-e-3",
-        n=1,
-        prompt=user_prompt,
-        size="1024x1024"
-    )
-    response_download = requests.get(response.data[0].url)
+# while True:
+#     user_prompt=input("Please Enter Your Prompt:")
+#     response= client.images.generate(
+#         model="dall-e-3",
+#         n=1,
+#         prompt=user_prompt,
+#         size="1024x1024"
+#     )
+#     response_download = requests.get(response.data[0].url)
 
-    if response_download.status_code == 200:
-        with open("image.png", "wb") as f:
-            f.write(response_download.content)
-        print("✅ Image downloaded successfully.")
-    else:
-        print(f"❌ Failed to download. Status code: {response.status_code}")
+#     if response_download.status_code == 200:
+#         with open("Img/image.png", "wb") as f:
+#             f.write(response_download.content)
+#         print("✅ Image downloaded successfully.")
+#     else:
+#         print(f"❌ Failed to download. Status code: {response.status_code}")
